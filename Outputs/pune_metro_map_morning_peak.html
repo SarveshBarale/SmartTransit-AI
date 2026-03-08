@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_98697880717a64ccf848aa8927b3a5e0 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    <script src="https://cdn.jsdelivr.net/gh/python-visualization/folium@main/folium/templates/leaflet_heat.min.js"></script>
+</head>
+<body>
+    
+    
+    <div style="
+        position: fixed; bottom: 30px; left: 30px; z-index: 1000;
+        background: rgba(20,20,30,0.92); border: 1px solid #444;
+        border-radius: 10px; padding: 14px 18px;
+        font-family: monospace; font-size: 12px; color: #eee;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    ">
+        <b style="font-size:13px;">🚇 Pune Metro Map</b><br>
+        <span style="color:#888;">Slot: 🌅 Morning Peak (07–10)</span>
+        <hr style="border-color:#444; margin:6px 0;">
+        <b>Lines</b><br>
+        <span style="color:#7B2D8B;">━━</span> Purple Line (14 stations)<br>
+        <span style="color:#00AEEF;">━━</span> Aqua Line (16 stations)<br>
+        <hr style="border-color:#444; margin:6px 0;">
+        <b>Demand Level</b><br>
+        <span style="color:#FF3B3B;">●</span> Very High (&gt;75%)<br>
+        <span style="color:#FF8C00;">●</span> High (50–75%)<br>
+        <span style="color:#FFD700;">●</span> Moderate (25–50%)<br>
+        <span style="color:#4CAF50;">●</span> Low (&lt;25%)<br>
+        <span style="color:#FFD700;">★</span> Interchange Station
+    </div>
+    
+    
+    <div style="
+        position: fixed; top: 15px; left: 50%; transform: translateX(-50%);
+        z-index: 1000; background: rgba(20,20,30,0.92);
+        border: 1px solid #444; border-radius: 8px;
+        padding: 8px 24px; font-family: monospace;
+        font-size: 15px; color: #fff;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    ">
+        🚇 <b>SmartTransit AI</b> — Pune Metro Demand Map &nbsp;|&nbsp;
+        <span style="color:#FFD700;">🌅 Morning Peak (07–10)</span>
+    </div>
+    
+    
+            <div class="folium-map" id="map_98697880717a64ccf848aa8927b3a5e0" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_98697880717a64ccf848aa8927b3a5e0 = L.map(
+                "map_98697880717a64ccf848aa8927b3a5e0",
+                {
+                    center: [18.5531, 73.8673],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 13,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_16f405835aa22475d9e4fe3e8ae52f78 = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_16f405835aa22475d9e4fe3e8ae52f78.addTo(map_98697880717a64ccf848aa8927b3a5e0);
+        
+    
+            var poly_line_02f6b0eaef211f0ef1f44903d0e8a364 = L.polyline(
+                [[18.6298, 73.7997], [18.6232, 73.8054], [18.617, 73.8101], [18.6089, 73.8143], [18.6014, 73.8179], [18.5956, 73.8224], [18.5894, 73.8271], [18.5831, 73.8312], [18.5763, 73.8354], [18.5308, 73.8474], [18.5196, 73.8554], [18.5143, 73.8573], [18.5089, 73.8565], [18.502, 73.8567]],
+                {"bubblingMouseEvents": true, "color": "#7B2D8B", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#7B2D8B", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 5}
+            ).addTo(map_98697880717a64ccf848aa8927b3a5e0);
+        
+    
+            poly_line_02f6b0eaef211f0ef1f44903d0e8a364.bindTooltip(
+                `<div>
+                     Purple Line — PCMC Bhavan ↔ Swargate
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_08f72e4d294200cf89bb0aab43606537 = L.polyline(
+                [[18.5068, 73.8074], [18.5098, 73.8148], [18.5128, 73.8198], [18.5168, 73.8248], [18.5191, 73.8312], [18.5204, 73.8401], [18.521, 73.8454], [18.5195, 73.8518], [18.5196, 73.8554], [18.5189, 73.8601], [18.5285, 73.874], [18.5353, 73.8918], [18.5412, 73.8985], [18.5504, 73.9014], [18.5464, 73.9065], [18.5421, 73.9124]],
+                {"bubblingMouseEvents": true, "color": "#00AEEF", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#00AEEF", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.9, "smoothFactor": 1.0, "stroke": true, "weight": 5}
+            ).addTo(map_98697880717a64ccf848aa8927b3a5e0);
+        
+    
+            poly_line_08f72e4d294200cf89bb0aab43606537.bindTooltip(
+                `<div>
+                     Aqua Line — Vanaz ↔ Ramwadi
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var heat_map_c7e239b66b76d97f4fc4e1ecd8566db0 = L.heatLayer(
+                [[18.6298, 73.7997, 0.7417475728155339], [18.6232, 73.8054, 0.8912621359223301], [18.617, 73.8101, 0.7223300970873786], [18.6089, 73.8143, 0.570873786407767], [18.6014, 73.8179, 0.7495145631067961], [18.5956, 73.8224, 0.6815533980582524], [18.5894, 73.8271, 0.9087378640776699], [18.5831, 73.8312, 0.5825242718446602], [18.5763, 73.8354, 0.7417475728155339], [18.5308, 73.8474, 0.7786407766990291], [18.5196, 73.8554, 0.9514563106796117], [18.5143, 73.8573, 0.9592233009708738], [18.5089, 73.8565, 0.6873786407766991], [18.502, 73.8567, 0.9359223300970874], [18.5068, 73.8074, 0.7126213592233009], [18.5098, 73.8148, 0.7689320388349514], [18.5128, 73.8198, 0.7359223300970874], [18.5168, 73.8248, 0.7436893203883496], [18.5191, 73.8312, 0.8368932038834952], [18.5204, 73.8401, 0.7961165048543689], [18.521, 73.8454, 0.8330097087378641], [18.5195, 73.8518, 0.6446601941747573], [18.5196, 73.8554, 0.545631067961165], [18.5189, 73.8601, 0.7126213592233009], [18.5285, 73.874, 1.0], [18.5353, 73.8918, 0.8485436893203884], [18.5412, 73.8985, 0.6155339805825243], [18.5504, 73.9014, 0.7941747572815534], [18.5464, 73.9065, 0.9145631067961165], [18.5421, 73.9124, 0.9067961165048544]],
+                {
+  "minOpacity": 0.3,
+  "maxZoom": 15,
+  "radius": 35,
+  "blur": 25,
+  "gradient": {
+  0.2: "#4CAF50",
+  0.5: "#FFD700",
+  0.75: "#FF8C00",
+  1.0: "#FF3B3B",
+},
+}
+            );
+        
+    
+            heat_map_c7e239b66b76d97f4fc4e1ecd8566db0.addTo(map_98697880717a64ccf848aa8927b3a5e0);
+        
+    
+            var circle_marker_a745f3bb7880dc4ce913a450a648ad21 = L.circleMarker(
+                [18.6298, 73.7997],
+                {"bubblingMouseEvents": true, "color": "#FF8C00", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF8C00", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 21, "stroke": true, "weight": 3}
+            ).addTo(map_98697880717a64ccf848aa8927b3a5e0);
+        
+    
+        var popup_f9fb36fed74023c573193530df665695 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_90f7b4c899801d548eb73bf9d98665d7 = $(`<div id="html_90f7b4c899801d548eb73bf9d98665d7" style="width: 100.0%; height: 100.0%;">         <div style="font-family: monospace; min-width: 180px;">             <b style="font-size:14px; color:#7B2D8B;">PCMC Bhavan</b><br>             <span style="color:#888;">ID: PU01 | Zone: north</span><br>             <hr style="margin:4px 0; border-color:#444;">             <b>Avg Demand (🌅 Morning Peak (07–10)):</b>             <span style="color:#FF8C00; font-size:15px;"> 382 pax</span><br>                          🏗 Elevated<br>             <span style="color:#888;">Opened: 2022-03-06</span>         </div>         </div>`)[0];
+                popup_f9fb36fed74023c573193530df665695.setContent(html_90f7b4c899801d548eb73bf9d98665d7);
+            
+        
+
+        circle_marker_a745f3bb7880dc4ce913a450a648ad21.bindPopup(popup_f9fb36fed74023c573193530df665695)
+        ;
+
+        
+    
+    
+            circle_marker_a745f3bb7880dc4ce913a450a648ad21.bindTooltip(
+                `<div>
+                     PCMC Bhavan — 382 pax
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_06702c179e5e819b78cfa157703bc58e = L.circleMarker(
+                [18.6232, 73.8054],
+                {"bubblingMouseEvents": true, "color": "#FF3B3B", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF3B3B", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 24, "stroke": true, "weight": 3}
+            ).addTo(map_98697880717a64ccf848aa8927b3a5e0);
+        
+    
+        var popup_2edf9b84fe9f9309d967aa083a431c54 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_3c7dce3fb1c0a073cc72b56cd6783ccb = $(`<div id="html_3c7dce3fb1c0a073cc72b56cd6783ccb" style="width: 100.0%; height: 100.0%;">         <div style="font-family: monospace; min-width: 180px;">             <b style="font-size:14px; color:#7B2D8B;">Sant Tukaram Nagar</b><br>             <span style="color:#888;">ID: PU02 | Zone: north</span><br>             <hr style="margin:4px 0; border-color:#444;">             <b>Avg Demand (🌅 Morning Peak (07–10)):</b>             <span style="color:#FF3B3B; font-size:15px;"> 459 pax</span><br>                          🏗 Elevated<br>             <span style="color:#888;">Opened: 2022-03-06</span>         </div>         </div>`)[0];
+                popup_2edf9b84fe9f9309d967aa083a431c54.setContent(html_3c7dce3fb1c0a073cc72b56cd6783ccb);
+            
+        
+
+        circle_marker_06702c179e5e819b78cfa157703bc58e.bindPopup(popup_2edf9b84fe9f9309d967aa083a431c54)
+        ;
+
+        
+    
+    
+            circle_marker_06702c179e5e819b78cfa157703bc58e.bindTooltip(
+                `<div>
+                     Sant Tukaram Nagar — 459 pax
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f65dfe8dd978534c8effbe673536cfa9 = L.circleMarker(
+                [18.617, 73.8101],
+                {"bubblingMouseEvents": true, "color": "#FF8C00", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF8C00", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 21, "stroke": true, "weight": 3}
+            ).addTo(map_98697880717a64ccf848aa8927b3a5e0);
+        
+    
+        var popup_5121ddb2bbe0899aa45ffb5c898c9f28 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_d7e71d8ed8a0d70c790e521940354054 = $(`<div id="html_d7e71d8ed8a0d70c790e521940354054" style="width: 100.0%; height: 100.0%;">         <div style="font-family: monospace; min-width: 180px;">             <b style="font-size:14px; color:#7B2D8B;">Bhosari (Nashik Phata)</b><br>             <span style="color:#888;">ID: PU03 | Zone: north</span><br>             <hr style="margin:4px 0; border-color:#444;">             <b>Avg Demand (🌅 Morning Peak (07–10)):</b>             <span style="color:#FF8C00; font-size:15px;"> 372 pax</span><br>                          🏗 Elevated<br>             <span style="color:#888;">Opened: 2022-03-06</span>         </div>         </div>`)[0];
+                popup_5121ddb2bbe0899aa45ffb5c898c9f28.setContent(html_d7e71d8ed8a0d70c790e521940354054);
+            
+        
+
+        circle_marker_f65dfe8dd978534c8effbe673536cfa9.bindPopup(popup_5121ddb2bbe0899aa45ffb5c898c9f28)
+        ;
+
+        
+    
+    
+            circle_marker_f65dfe8dd978534c8effbe673536cfa9.bindTooltip(
+                `<div>
+                     Bhosari (Nashik Phata) — 372 pax
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c4f7ef768ad084e43a1aad7aabba15dc = L.circleMarker(
+                [18.6089, 73.8143],
+                {"bubblingMouseEvents": true, "color": "#FF8C00", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF8C00", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 18, "stroke": true, "weight": 3}
+            ).addTo(map_98697880717a64ccf848aa8927b3a5e0);
+        
+    
+        var popup_6e1bb8a81c18e843927e3785cfc63050 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_4a65c1bef10f8735036fc0d10690ee6a = $(`<div id="html_4a65c1bef10f8735036fc0d10690ee6a" style="width: 100.0%; height: 100.0%;">         <div style="font-family: monospace; min-width: 180px;">             <b style="font-size:14px; color:#7B2D8B;">Kasarwadi</b><br>             <span style="color:#888;">ID: PU04 | Zone: north</span><br>             <hr style="margin:4px 0; border-color:#444;">             <b>Avg Demand (🌅 Morning Peak (07–10)):</b>             <span style="color:#FF8C00; font-size:15px;"> 294 pax</span><br>                          🏗 Elevated<br>             <span style="color:#888;">Opened: 2022-03-06</span>         </div>         </div>`)[0];
+                popup_6e1bb8a81c18e843927e3785cfc63050.setContent(html_4a65c1bef10f8735036fc0d10690ee6a);
+            
+        
+
+        circle_marker_c4f7ef768ad084e43a1aad7aabba15dc.bindPopup(popup_6e1bb8a81c18e843927e3785cfc63050)
+        ;
+
+        
+    
+    
+            circle_marker_c4f7ef768ad084e43a1aad7aabba15dc.bindTooltip(
+                `<div>
+                     Kasarwadi — 294 pax
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_326f010f1af06417b5273e7ff1a9f7e4 = L.circleMarker(
+                [18.6014, 73.8179],
+                {"bubblingMouseEvents": true, "color": "#FF8C00", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF8C00", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 21, "stroke": true, "weight": 3}
+            ).addTo(map_98697880717a64ccf848aa8927b3a5e0);
+        
+    
+        var popup_ef983424b74e82e203b60157aca95c7f = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_70fcfcb8b79aa6aa6f992c4a3a85d8b5 = $(`<div id="html_70fcfcb8b79aa6aa6f992c4a3a85d8b5" style="width: 100.0%; height: 100.0%;">         <div style="font-family: monospace; min-width: 180px;">             <b style="font-size:14px; color:#7B2D8B;">Phugewadi</b><br>             <span style="color:#888;">ID: PU05 | Zone: north</span><br>             <hr style="margin:4px 0; border-color:#444;">             <b>Avg Demand (🌅 Morning Peak (07–10)):</b>             <span style="color:#FF8C00; font-size:15px;"> 386 pax</span><br>                          🏗 Elevated<br>             <span style="color:#888;">Opened: 2022-03-06</span>         </div>         </div>`)[0];
+                popup_ef983424b74e82e203b60157aca95c7f.setContent(html_70fcfcb8b79aa6aa6f992c4a3a85d8b5);
+            
+        
+
+        circle_marker_326f010f1af06417b5273e7ff1a9f7e4.bindPopup(popup_ef983424b74e82e203b60157aca95c7f)
+        ;
+
+        
+    
+    
+            circle_marker_326f010f1af06417b5273e7ff1a9f7e4.bindTooltip(
+                `<div>
+                     Phugewadi — 386 pax
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_61a36f327f9e415bd51ac2af4b6ef01e = L.circleMarker(
+                [18.5956, 73.8224],
+                {"bubblingMouseEvents": true, "color": "#FF8C00", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF8C00", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 20, "stroke": true, "weight": 3}
+            ).addTo(map_98697880717a64ccf848aa8927b3a5e0);
+        
+    
+        var popup_313ffd9dcf88ab9e9953468ce25e7e5f = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_cf6ac6aa7acd41d125086f9d72c21dc7 = $(`<div id="html_cf6ac6aa7acd41d125086f9d72c21dc7" style="width: 100.0%; height: 100.0%;">         <div style="font-family: monospace; min-width: 180px;">             <b style="font-size:14px; color:#7B2D8B;">Dapodi</b><br>             <span style="color:#888;">ID: PU06 | Zone: central-north</span><br>             <hr style="margin:4px 0; border-color:#444;">             <b>Avg Demand (🌅 Morning Peak (07–10)):</b>             <span style="color:#FF8C00; font-size:15px;"> 351 pax</span><br>                          🏗 Elevated<br>             <span style="color:#888;">Opened: 2023-08-01</span>         </div>         </div>`)[0];
+                popup_313ffd9dcf88ab9e9953468ce25e7e5f.setContent(html_cf6ac6aa7acd41d125086f9d72c21dc7);
+            
+        
+
+        circle_marker_61a36f327f9e415bd51ac2af4b6ef01e.bindPopup(popup_313ffd9dcf88ab9e9953468ce25e7e5f)
+        ;
+
+        
+    
+    
+            circle_marker_61a36f327f9e415bd51ac2af4b6ef01e.bindTooltip(
+                `<div>
+                     Dapodi — 351 pax
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3c17949492f8cc21b9bb9b165f10f0d3 = L.circleMarker(
+                [18.5894, 73.8271],
+                {"bubblingMouseEvents": true, "color": "#FF3B3B", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF3B3B", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 24, "stroke": true, "weight": 3}
+            ).addTo(map_98697880717a64ccf848aa8927b3a5e0);
+        
+    
+        var popup_4fcfecafcef6d4e4b59fbfe6f2d82b51 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_6d236f6dcce6b7295b6186e5c69ac786 = $(`<div id="html_6d236f6dcce6b7295b6186e5c69ac786" style="width: 100.0%; height: 100.0%;">         <div style="font-family: monospace; min-width: 180px;">             <b style="font-size:14px; color:#7B2D8B;">Bopodi</b><br>             <span style="color:#888;">ID: PU07 | Zone: central-north</span><br>             <hr style="margin:4px 0; border-color:#444;">             <b>Avg Demand (🌅 Morning Peak (07–10)):</b>             <span style="color:#FF3B3B; font-size:15px;"> 468 pax</span><br>                          🏗 Elevated<br>             <span style="color:#888;">Opened: 2023-08-01</span>         </div>         </div>`)[0];
+                popup_4fcfecafcef6d4e4b59fbfe6f2d82b51.setContent(html_6d236f6dcce6b7295b6186e5c69ac786);
+            
+        
+
+        circle_marker_3c17949492f8cc21b9bb9b165f10f0d3.bindPopup(popup_4fcfecafcef6d4e4b59fbfe6f2d82b51)
+        ;
+
+        
+    
+    
+            circle_marker_3c17949492f8cc21b9bb9b165f10f0d3.bindTooltip(
+                `<div>
+                     Bopodi — 468 pax
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ce48401e2591e112633e56c826bbe0f5 = L.circleMarker(
+                [18.5831, 73.8312],
+                {"bubblingMouseEvents": true, "color": "#FF8C00", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF8C00", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 18, "stroke": true, "weight": 3}
+            ).addTo(map_98697880717a64ccf848aa8927b3a5e0);
+        
+    
+        var popup_d0343d50c0c805dd962a6e8e21b85398 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_5cc02220d4b349f8a2c246b8d33cf294 = $(`<div id="html_5cc02220d4b349f8a2c246b8d33cf294" style="width: 100.0%; height: 100.0%;">         <div style="font-family: monospace; min-width: 180px;">             <b style="font-size:14px; color:#7B2D8B;">Khadki</b><br>             <span style="color:#888;">ID: PU08 | Zone: central-north</span><br>             <hr style="margin:4px 0; border-color:#444;">             <b>Avg Demand (🌅 Morning Peak (07–10)):</b>             <span style="color:#FF8C00; font-size:15px;"> 300 pax</span><br>                          🏗 Elevated<br>             <span style="color:#888;">Opened: 2023-08-01</span>         </div>         </div>`)[0];
+                popup_d0343d50c0c805dd962a6e8e21b85398.setContent(html_5cc02220d4b349f8a2c246b8d33cf294);
+            
+        
+
+        circle_marker_ce48401e2591e112633e56c826bbe0f5.bindPopup(popup_d0343d50c0c805dd962a6e8e21b85398)
+        ;
+
+        
+    
+    
+            circle_marker_ce48401e2591e112633e56c826bbe0f5.bindTooltip(
+                `<div>
+                     Khadki — 300 pax
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_efff47c3b7b99cc8867105f461c47fbd = L.circleMarker(
+                [18.5763, 73.8354],
+                {"bubblingMouseEvents": true, "color": "#FF8C00", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF8C00", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 21, "stroke": true, "weight": 3}
+            ).addTo(map_98697880717a64ccf848aa8927b3a5e0);
+        
+    
+        var popup_ea5dc63262ffbea1e651fa5232cb7e8a = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_1ab6ad4133354043842cc1448a31f1fd = $(`<div id="html_1ab6ad4133354043842cc1448a31f1fd" style="width: 100.0%; height: 100.0%;">         <div style="font-family: monospace; min-width: 180px;">             <b style="font-size:14px; color:#7B2D8B;">Range Hill</b><br>             <span style="color:#888;">ID: PU09 | Zone: central</span><br>             <hr style="margin:4px 0; border-color:#444;">             <b>Avg Demand (🌅 Morning Peak (07–10)):</b>             <span style="color:#FF8C00; font-size:15px;"> 382 pax</span><br>                          🏗 Elevated<br>             <span style="color:#888;">Opened: 2023-08-01</span>         </div>         </div>`)[0];
+                popup_ea5dc63262ffbea1e651fa5232cb7e8a.setContent(html_1ab6ad4133354043842cc1448a31f1fd);
+            
+        
+
+        circle_marker_efff47c3b7b99cc8867105f461c47fbd.bindPopup(popup_ea5dc63262ffbea1e651fa5232cb7e8a)
+        ;
+
+        
+    
+    
+            circle_marker_efff47c3b7b99cc8867105f461c47fbd.bindTooltip(
+                `<div>
+                     Range Hill — 382 pax
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f964137bdcd98195108488f853d43f24 = L.circleMarker(
+                [18.5308, 73.8474],
+                {"bubblingMouseEvents": true, "color": "#FF3B3B", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF3B3B", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 22, "stroke": true, "weight": 3}
+            ).addTo(map_98697880717a64ccf848aa8927b3a5e0);
+        
+    
+        var popup_5cb2599cf7951d1a9b643e75fbf580b3 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_f148b44da68eea1187321c615d297116 = $(`<div id="html_f148b44da68eea1187321c615d297116" style="width: 100.0%; height: 100.0%;">         <div style="font-family: monospace; min-width: 180px;">             <b style="font-size:14px; color:#7B2D8B;">Shivaji Nagar</b><br>             <span style="color:#888;">ID: PU10 | Zone: central</span><br>             <hr style="margin:4px 0; border-color:#444;">             <b>Avg Demand (🌅 Morning Peak (07–10)):</b>             <span style="color:#FF3B3B; font-size:15px;"> 401 pax</span><br>                          🏗 Elevated<br>             <span style="color:#888;">Opened: 2023-08-01</span>         </div>         </div>`)[0];
+                popup_5cb2599cf7951d1a9b643e75fbf580b3.setContent(html_f148b44da68eea1187321c615d297116);
+            
+        
+
+        circle_marker_f964137bdcd98195108488f853d43f24.bindPopup(popup_5cb2599cf7951d1a9b643e75fbf580b3)
+        ;
+
+        
+    
+    
+            circle_marker_f964137bdcd98195108488f853d43f24.bindTooltip(
+                `<div>
+                     Shivaji Nagar — 401 pax
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_2c7470bc8e6a1d3ec1f8d4795373818e = L.marker(
+                [18.5196, 73.8554],
+                {
+}
+            ).addTo(map_98697880717a64ccf848aa8927b3a5e0);
+        
+    
+            var icon_38cc9c470f2e7fceb4b0221b05217d65 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "star",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_1a2a7807703f5372c7b4c8743d30ba5f = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_b6c2d4643710e62d1c9f27c56526a56b = $(`<div id="html_b6c2d4643710e62d1c9f27c56526a56b" style="width: 100.0%; height: 100.0%;">         <div style="font-family: monospace; min-width: 180px;">             <b style="font-size:14px; color:#7B2D8B;">Civil Court</b><br>             <span style="color:#888;">ID: PU11 | Zone: central</span><br>             <hr style="margin:4px 0; border-color:#444;">             <b>Avg Demand (🌅 Morning Peak (07–10)):</b>             <span style="color:#FF3B3B; font-size:15px;"> 490 pax</span><br>             <b style='color:#FFD700;'>⇄ INTERCHANGE STATION</b><br>             🔲 Underground<br>             <span style="color:#888;">Opened: 2023-08-01</span>         </div>         </div>`)[0];
+                popup_1a2a7807703f5372c7b4c8743d30ba5f.setContent(html_b6c2d4643710e62d1c9f27c56526a56b);
+            
+        
+
+        marker_2c7470bc8e6a1d3ec1f8d4795373818e.bindPopup(popup_1a2a7807703f5372c7b4c8743d30ba5f)
+        ;
+
+        
+    
+    
+            marker_2c7470bc8e6a1d3ec1f8d4795373818e.bindTooltip(
+                `<div>
+                     ⇄ Civil Court — 490 pax
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2c7470bc8e6a1d3ec1f8d4795373818e.setIcon(icon_38cc9c470f2e7fceb4b0221b05217d65);
+            
+    
+            var circle_marker_c172da571bd64f2bcac49cafdce42e5c = L.circleMarker(
+                [18.5143, 73.8573],
+                {"bubblingMouseEvents": true, "color": "#FF3B3B", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF3B3B", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 25, "stroke": true, "weight": 3}
+            ).addTo(map_98697880717a64ccf848aa8927b3a5e0);
+        
+    
+        var popup_8e4203f0562bdd3401a0d27dbe557cbf = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_2ca567228ca6cfc147cc517ef3eeb236 = $(`<div id="html_2ca567228ca6cfc147cc517ef3eeb236" style="width: 100.0%; height: 100.0%;">         <div style="font-family: monospace; min-width: 180px;">             <b style="font-size:14px; color:#7B2D8B;">Kasba Peth</b><br>             <span style="color:#888;">ID: PU12 | Zone: south</span><br>             <hr style="margin:4px 0; border-color:#444;">             <b>Avg Demand (🌅 Morning Peak (07–10)):</b>             <span style="color:#FF3B3B; font-size:15px;"> 494 pax</span><br>                          🔲 Underground<br>             <span style="color:#888;">Opened: 2024-09-29</span>         </div>         </div>`)[0];
+                popup_8e4203f0562bdd3401a0d27dbe557cbf.setContent(html_2ca567228ca6cfc147cc517ef3eeb236);
+            
+        
+
+        circle_marker_c172da571bd64f2bcac49cafdce42e5c.bindPopup(popup_8e4203f0562bdd3401a0d27dbe557cbf)
+        ;
+
+        
+    
+    
+            circle_marker_c172da571bd64f2bcac49cafdce42e5c.bindTooltip(
+                `<div>
+                     Kasba Peth — 494 pax
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1b77d28b04c5e9c74697f6dad985d583 = L.circleMarker(
+                [18.5089, 73.8565],
+                {"bubblingMouseEvents": true, "color": "#FF8C00", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF8C00", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 20, "stroke": true, "weight": 3}
+            ).addTo(map_98697880717a64ccf848aa8927b3a5e0);
+        
+    
+        var popup_42939f668e128c2d43326fbad95a3e56 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_6a183ad86f3e5170d936f88e50b14e07 = $(`<div id="html_6a183ad86f3e5170d936f88e50b14e07" style="width: 100.0%; height: 100.0%;">         <div style="font-family: monospace; min-width: 180px;">             <b style="font-size:14px; color:#7B2D8B;">Mandai</b><br>             <span style="color:#888;">ID: PU13 | Zone: south</span><br>             <hr style="margin:4px 0; border-color:#444;">             <b>Avg Demand (🌅 Morning Peak (07–10)):</b>             <span style="color:#FF8C00; font-size:15px;"> 354 pax</span><br>                          🔲 Underground<br>             <span style="color:#888;">Opened: 2024-09-29</span>         </div>         </div>`)[0];
+                popup_42939f668e128c2d43326fbad95a3e56.setContent(html_6a183ad86f3e5170d936f88e50b14e07);
+            
+        
+
+        circle_marker_1b77d28b04c5e9c74697f6dad985d583.bindPopup(popup_42939f668e128c2d43326fbad95a3e56)
+        ;
+
+        
+    
+    
+            circle_marker_1b77d28b04c5e9c74697f6dad985d583.bindTooltip(
+                `<div>
+                     Mandai — 354 pax
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a77cfb68e282b085f550fb1f90b5cabc = L.circleMarker(
+                [18.502, 73.8567],
+                {"bubblingMouseEvents": true, "color": "#FF3B3B", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF3B3B", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 24, "stroke": true, "weight": 3}
+            ).addTo(map_98697880717a64ccf848aa8927b3a5e0);
+        
+    
+        var popup_f31bcc3565b7da492b69af6291f0ff59 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_5df3b6defae1073d8670bc9f90878c67 = $(`<div id="html_5df3b6defae1073d8670bc9f90878c67" style="width: 100.0%; height: 100.0%;">         <div style="font-family: monospace; min-width: 180px;">             <b style="font-size:14px; color:#7B2D8B;">Swargate</b><br>             <span style="color:#888;">ID: PU14 | Zone: south</span><br>             <hr style="margin:4px 0; border-color:#444;">             <b>Avg Demand (🌅 Morning Peak (07–10)):</b>             <span style="color:#FF3B3B; font-size:15px;"> 482 pax</span><br>                          🔲 Underground<br>             <span style="color:#888;">Opened: 2024-09-29</span>         </div>         </div>`)[0];
+                popup_f31bcc3565b7da492b69af6291f0ff59.setContent(html_5df3b6defae1073d8670bc9f90878c67);
+            
+        
+
+        circle_marker_a77cfb68e282b085f550fb1f90b5cabc.bindPopup(popup_f31bcc3565b7da492b69af6291f0ff59)
+        ;
+
+        
+    
+    
+            circle_marker_a77cfb68e282b085f550fb1f90b5cabc.bindTooltip(
+                `<div>
+                     Swargate — 482 pax
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_11b3520ec0c55dfdbe2129bf2690eb8d = L.circleMarker(
+                [18.5068, 73.8074],
+                {"bubblingMouseEvents": true, "color": "#FF8C00", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF8C00", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 20, "stroke": true, "weight": 3}
+            ).addTo(map_98697880717a64ccf848aa8927b3a5e0);
+        
+    
+        var popup_8f7c165a838302cd80abf8fd1781c983 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_93cabc2cdc2ae80265addf7ea24ee5d2 = $(`<div id="html_93cabc2cdc2ae80265addf7ea24ee5d2" style="width: 100.0%; height: 100.0%;">         <div style="font-family: monospace; min-width: 180px;">             <b style="font-size:14px; color:#00AEEF;">Vanaz</b><br>             <span style="color:#888;">ID: AQ01 | Zone: west</span><br>             <hr style="margin:4px 0; border-color:#444;">             <b>Avg Demand (🌅 Morning Peak (07–10)):</b>             <span style="color:#FF8C00; font-size:15px;"> 367 pax</span><br>                          🏗 Elevated<br>             <span style="color:#888;">Opened: 2022-03-06</span>         </div>         </div>`)[0];
+                popup_8f7c165a838302cd80abf8fd1781c983.setContent(html_93cabc2cdc2ae80265addf7ea24ee5d2);
+            
+        
+
+        circle_marker_11b3520ec0c55dfdbe2129bf2690eb8d.bindPopup(popup_8f7c165a838302cd80abf8fd1781c983)
+        ;
+
+        
+    
+    
+            circle_marker_11b3520ec0c55dfdbe2129bf2690eb8d.bindTooltip(
+                `<div>
+                     Vanaz — 367 pax
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f8f6a95150ba5ad86d4c1d9a6516c6ce = L.circleMarker(
+                [18.5098, 73.8148],
+                {"bubblingMouseEvents": true, "color": "#FF3B3B", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF3B3B", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 21, "stroke": true, "weight": 3}
+            ).addTo(map_98697880717a64ccf848aa8927b3a5e0);
+        
+    
+        var popup_ef4c349c7b88b167d5a44082c6cdd4c2 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_bb361abea0bea07eb71b8ec88b5db9e0 = $(`<div id="html_bb361abea0bea07eb71b8ec88b5db9e0" style="width: 100.0%; height: 100.0%;">         <div style="font-family: monospace; min-width: 180px;">             <b style="font-size:14px; color:#00AEEF;">Anand Nagar</b><br>             <span style="color:#888;">ID: AQ02 | Zone: west</span><br>             <hr style="margin:4px 0; border-color:#444;">             <b>Avg Demand (🌅 Morning Peak (07–10)):</b>             <span style="color:#FF3B3B; font-size:15px;"> 396 pax</span><br>                          🏗 Elevated<br>             <span style="color:#888;">Opened: 2022-03-06</span>         </div>         </div>`)[0];
+                popup_ef4c349c7b88b167d5a44082c6cdd4c2.setContent(html_bb361abea0bea07eb71b8ec88b5db9e0);
+            
+        
+
+        circle_marker_f8f6a95150ba5ad86d4c1d9a6516c6ce.bindPopup(popup_ef4c349c7b88b167d5a44082c6cdd4c2)
+        ;
+
+        
+    
+    
+            circle_marker_f8f6a95150ba5ad86d4c1d9a6516c6ce.bindTooltip(
+                `<div>
+                     Anand Nagar — 396 pax
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b521a36a4a51a4bc80ed04dcf07eccb2 = L.circleMarker(
+                [18.5128, 73.8198],
+                {"bubblingMouseEvents": true, "color": "#FF8C00", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF8C00", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 21, "stroke": true, "weight": 3}
+            ).addTo(map_98697880717a64ccf848aa8927b3a5e0);
+        
+    
+        var popup_3a32701d0150d8458babb4d9b3829379 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_e863562ffc998a9ce2b491fef6749a6e = $(`<div id="html_e863562ffc998a9ce2b491fef6749a6e" style="width: 100.0%; height: 100.0%;">         <div style="font-family: monospace; min-width: 180px;">             <b style="font-size:14px; color:#00AEEF;">Ideal Colony</b><br>             <span style="color:#888;">ID: AQ03 | Zone: west</span><br>             <hr style="margin:4px 0; border-color:#444;">             <b>Avg Demand (🌅 Morning Peak (07–10)):</b>             <span style="color:#FF8C00; font-size:15px;"> 379 pax</span><br>                          🏗 Elevated<br>             <span style="color:#888;">Opened: 2022-03-06</span>         </div>         </div>`)[0];
+                popup_3a32701d0150d8458babb4d9b3829379.setContent(html_e863562ffc998a9ce2b491fef6749a6e);
+            
+        
+
+        circle_marker_b521a36a4a51a4bc80ed04dcf07eccb2.bindPopup(popup_3a32701d0150d8458babb4d9b3829379)
+        ;
+
+        
+    
+    
+            circle_marker_b521a36a4a51a4bc80ed04dcf07eccb2.bindTooltip(
+                `<div>
+                     Ideal Colony — 379 pax
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_bc3864b24e0c902c5043a8f98c1e7482 = L.circleMarker(
+                [18.5168, 73.8248],
+                {"bubblingMouseEvents": true, "color": "#FF8C00", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF8C00", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 21, "stroke": true, "weight": 3}
+            ).addTo(map_98697880717a64ccf848aa8927b3a5e0);
+        
+    
+        var popup_87b278b5b580f12c76998e610b30f013 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_835920fc800dc6c1f039125c6112b39f = $(`<div id="html_835920fc800dc6c1f039125c6112b39f" style="width: 100.0%; height: 100.0%;">         <div style="font-family: monospace; min-width: 180px;">             <b style="font-size:14px; color:#00AEEF;">Nal Stop</b><br>             <span style="color:#888;">ID: AQ04 | Zone: west</span><br>             <hr style="margin:4px 0; border-color:#444;">             <b>Avg Demand (🌅 Morning Peak (07–10)):</b>             <span style="color:#FF8C00; font-size:15px;"> 383 pax</span><br>                          🏗 Elevated<br>             <span style="color:#888;">Opened: 2022-03-06</span>         </div>         </div>`)[0];
+                popup_87b278b5b580f12c76998e610b30f013.setContent(html_835920fc800dc6c1f039125c6112b39f);
+            
+        
+
+        circle_marker_bc3864b24e0c902c5043a8f98c1e7482.bindPopup(popup_87b278b5b580f12c76998e610b30f013)
+        ;
+
+        
+    
+    
+            circle_marker_bc3864b24e0c902c5043a8f98c1e7482.bindTooltip(
+                `<div>
+                     Nal Stop — 383 pax
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e7b187f102355f72f58577e8bf07df02 = L.circleMarker(
+                [18.5191, 73.8312],
+                {"bubblingMouseEvents": true, "color": "#FF3B3B", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF3B3B", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 23, "stroke": true, "weight": 3}
+            ).addTo(map_98697880717a64ccf848aa8927b3a5e0);
+        
+    
+        var popup_5b2f1167919d75f5225f690636d34175 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_9072217c39b9a4a82aea3aa544a007bc = $(`<div id="html_9072217c39b9a4a82aea3aa544a007bc" style="width: 100.0%; height: 100.0%;">         <div style="font-family: monospace; min-width: 180px;">             <b style="font-size:14px; color:#00AEEF;">Garware College</b><br>             <span style="color:#888;">ID: AQ05 | Zone: central-west</span><br>             <hr style="margin:4px 0; border-color:#444;">             <b>Avg Demand (🌅 Morning Peak (07–10)):</b>             <span style="color:#FF3B3B; font-size:15px;"> 431 pax</span><br>                          🏗 Elevated<br>             <span style="color:#888;">Opened: 2022-03-06</span>         </div>         </div>`)[0];
+                popup_5b2f1167919d75f5225f690636d34175.setContent(html_9072217c39b9a4a82aea3aa544a007bc);
+            
+        
+
+        circle_marker_e7b187f102355f72f58577e8bf07df02.bindPopup(popup_5b2f1167919d75f5225f690636d34175)
+        ;
+
+        
+    
+    
+            circle_marker_e7b187f102355f72f58577e8bf07df02.bindTooltip(
+                `<div>
+                     Garware College — 431 pax
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_baa4bf703918935b767fe3510a2857d3 = L.circleMarker(
+                [18.5204, 73.8401],
+                {"bubblingMouseEvents": true, "color": "#FF3B3B", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF3B3B", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 22, "stroke": true, "weight": 3}
+            ).addTo(map_98697880717a64ccf848aa8927b3a5e0);
+        
+    
+        var popup_acc0d1bb918da327d190ccd499e9e0de = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_03811068f84f127cdc13dbb556059ff6 = $(`<div id="html_03811068f84f127cdc13dbb556059ff6" style="width: 100.0%; height: 100.0%;">         <div style="font-family: monospace; min-width: 180px;">             <b style="font-size:14px; color:#00AEEF;">Deccan Gymkhana</b><br>             <span style="color:#888;">ID: AQ06 | Zone: central-west</span><br>             <hr style="margin:4px 0; border-color:#444;">             <b>Avg Demand (🌅 Morning Peak (07–10)):</b>             <span style="color:#FF3B3B; font-size:15px;"> 410 pax</span><br>                          🏗 Elevated<br>             <span style="color:#888;">Opened: 2022-03-06</span>         </div>         </div>`)[0];
+                popup_acc0d1bb918da327d190ccd499e9e0de.setContent(html_03811068f84f127cdc13dbb556059ff6);
+            
+        
+
+        circle_marker_baa4bf703918935b767fe3510a2857d3.bindPopup(popup_acc0d1bb918da327d190ccd499e9e0de)
+        ;
+
+        
+    
+    
+            circle_marker_baa4bf703918935b767fe3510a2857d3.bindTooltip(
+                `<div>
+                     Deccan Gymkhana — 410 pax
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_529e5fd8161d217bc301ce278a258cff = L.circleMarker(
+                [18.521, 73.8454],
+                {"bubblingMouseEvents": true, "color": "#FF3B3B", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF3B3B", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 22, "stroke": true, "weight": 3}
+            ).addTo(map_98697880717a64ccf848aa8927b3a5e0);
+        
+    
+        var popup_a08c07309a0f75e63060be21427ebd00 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_507b669e51ba956a0b4a0797578f5e7c = $(`<div id="html_507b669e51ba956a0b4a0797578f5e7c" style="width: 100.0%; height: 100.0%;">         <div style="font-family: monospace; min-width: 180px;">             <b style="font-size:14px; color:#00AEEF;">Chhatrapati Sambhaji Udyan</b><br>             <span style="color:#888;">ID: AQ07 | Zone: central</span><br>             <hr style="margin:4px 0; border-color:#444;">             <b>Avg Demand (🌅 Morning Peak (07–10)):</b>             <span style="color:#FF3B3B; font-size:15px;"> 429 pax</span><br>                          🏗 Elevated<br>             <span style="color:#888;">Opened: 2022-03-06</span>         </div>         </div>`)[0];
+                popup_a08c07309a0f75e63060be21427ebd00.setContent(html_507b669e51ba956a0b4a0797578f5e7c);
+            
+        
+
+        circle_marker_529e5fd8161d217bc301ce278a258cff.bindPopup(popup_a08c07309a0f75e63060be21427ebd00)
+        ;
+
+        
+    
+    
+            circle_marker_529e5fd8161d217bc301ce278a258cff.bindTooltip(
+                `<div>
+                     Chhatrapati Sambhaji Udyan — 429 pax
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8530813773078394f7a2b855f01aaed8 = L.circleMarker(
+                [18.5195, 73.8518],
+                {"bubblingMouseEvents": true, "color": "#FF8C00", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF8C00", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 19, "stroke": true, "weight": 3}
+            ).addTo(map_98697880717a64ccf848aa8927b3a5e0);
+        
+    
+        var popup_e6a847c63c73b6e17d3923370a23f73b = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_e1212e06992b56110370fec051ad7c5a = $(`<div id="html_e1212e06992b56110370fec051ad7c5a" style="width: 100.0%; height: 100.0%;">         <div style="font-family: monospace; min-width: 180px;">             <b style="font-size:14px; color:#00AEEF;">PMC</b><br>             <span style="color:#888;">ID: AQ08 | Zone: central</span><br>             <hr style="margin:4px 0; border-color:#444;">             <b>Avg Demand (🌅 Morning Peak (07–10)):</b>             <span style="color:#FF8C00; font-size:15px;"> 332 pax</span><br>                          🏗 Elevated<br>             <span style="color:#888;">Opened: 2022-03-06</span>         </div>         </div>`)[0];
+                popup_e6a847c63c73b6e17d3923370a23f73b.setContent(html_e1212e06992b56110370fec051ad7c5a);
+            
+        
+
+        circle_marker_8530813773078394f7a2b855f01aaed8.bindPopup(popup_e6a847c63c73b6e17d3923370a23f73b)
+        ;
+
+        
+    
+    
+            circle_marker_8530813773078394f7a2b855f01aaed8.bindTooltip(
+                `<div>
+                     PMC — 332 pax
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_80bcfe96506bf23b7ad758103d4bcdc2 = L.marker(
+                [18.5196, 73.8554],
+                {
+}
+            ).addTo(map_98697880717a64ccf848aa8927b3a5e0);
+        
+    
+            var icon_0104a4caa309b7d8546507e381380ba1 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "star",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_2a3f1e677406a97ac1402fa05c2ae3e7 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_6f57fa1638fbdba3af1c02be50a33f00 = $(`<div id="html_6f57fa1638fbdba3af1c02be50a33f00" style="width: 100.0%; height: 100.0%;">         <div style="font-family: monospace; min-width: 180px;">             <b style="font-size:14px; color:#00AEEF;">Civil Court</b><br>             <span style="color:#888;">ID: AQ09 | Zone: central</span><br>             <hr style="margin:4px 0; border-color:#444;">             <b>Avg Demand (🌅 Morning Peak (07–10)):</b>             <span style="color:#FF8C00; font-size:15px;"> 281 pax</span><br>             <b style='color:#FFD700;'>⇄ INTERCHANGE STATION</b><br>             🏗 Elevated<br>             <span style="color:#888;">Opened: 2023-08-01</span>         </div>         </div>`)[0];
+                popup_2a3f1e677406a97ac1402fa05c2ae3e7.setContent(html_6f57fa1638fbdba3af1c02be50a33f00);
+            
+        
+
+        marker_80bcfe96506bf23b7ad758103d4bcdc2.bindPopup(popup_2a3f1e677406a97ac1402fa05c2ae3e7)
+        ;
+
+        
+    
+    
+            marker_80bcfe96506bf23b7ad758103d4bcdc2.bindTooltip(
+                `<div>
+                     ⇄ Civil Court — 281 pax
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_80bcfe96506bf23b7ad758103d4bcdc2.setIcon(icon_0104a4caa309b7d8546507e381380ba1);
+            
+    
+            var circle_marker_006f7c246a964d2d4e09cd0c48d54175 = L.circleMarker(
+                [18.5189, 73.8601],
+                {"bubblingMouseEvents": true, "color": "#FF8C00", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF8C00", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 20, "stroke": true, "weight": 3}
+            ).addTo(map_98697880717a64ccf848aa8927b3a5e0);
+        
+    
+        var popup_b57eb34ba35ddc872e8692323a3e10b0 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_cfae938b76ded1e968fa2803f7eb5b78 = $(`<div id="html_cfae938b76ded1e968fa2803f7eb5b78" style="width: 100.0%; height: 100.0%;">         <div style="font-family: monospace; min-width: 180px;">             <b style="font-size:14px; color:#00AEEF;">Mangalwar Peth</b><br>             <span style="color:#888;">ID: AQ10 | Zone: central-east</span><br>             <hr style="margin:4px 0; border-color:#444;">             <b>Avg Demand (🌅 Morning Peak (07–10)):</b>             <span style="color:#FF8C00; font-size:15px;"> 367 pax</span><br>                          🏗 Elevated<br>             <span style="color:#888;">Opened: 2023-08-01</span>         </div>         </div>`)[0];
+                popup_b57eb34ba35ddc872e8692323a3e10b0.setContent(html_cfae938b76ded1e968fa2803f7eb5b78);
+            
+        
+
+        circle_marker_006f7c246a964d2d4e09cd0c48d54175.bindPopup(popup_b57eb34ba35ddc872e8692323a3e10b0)
+        ;
+
+        
+    
+    
+            circle_marker_006f7c246a964d2d4e09cd0c48d54175.bindTooltip(
+                `<div>
+                     Mangalwar Peth — 367 pax
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_613adcf570158b5849cd9c5520aaa6e4 = L.circleMarker(
+                [18.5285, 73.874],
+                {"bubblingMouseEvents": true, "color": "#FF3B3B", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF3B3B", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 26, "stroke": true, "weight": 3}
+            ).addTo(map_98697880717a64ccf848aa8927b3a5e0);
+        
+    
+        var popup_f59b308429ea400c6e9b8a0cc17779f8 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_33a2ed63508fa1c1a6f4a18392e0d147 = $(`<div id="html_33a2ed63508fa1c1a6f4a18392e0d147" style="width: 100.0%; height: 100.0%;">         <div style="font-family: monospace; min-width: 180px;">             <b style="font-size:14px; color:#00AEEF;">Pune Railway Station</b><br>             <span style="color:#888;">ID: AQ11 | Zone: central-east</span><br>             <hr style="margin:4px 0; border-color:#444;">             <b>Avg Demand (🌅 Morning Peak (07–10)):</b>             <span style="color:#FF3B3B; font-size:15px;"> 515 pax</span><br>                          🏗 Elevated<br>             <span style="color:#888;">Opened: 2023-08-01</span>         </div>         </div>`)[0];
+                popup_f59b308429ea400c6e9b8a0cc17779f8.setContent(html_33a2ed63508fa1c1a6f4a18392e0d147);
+            
+        
+
+        circle_marker_613adcf570158b5849cd9c5520aaa6e4.bindPopup(popup_f59b308429ea400c6e9b8a0cc17779f8)
+        ;
+
+        
+    
+    
+            circle_marker_613adcf570158b5849cd9c5520aaa6e4.bindTooltip(
+                `<div>
+                     Pune Railway Station — 515 pax
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ada3dd594e338b6f16843248d27cb9d4 = L.circleMarker(
+                [18.5353, 73.8918],
+                {"bubblingMouseEvents": true, "color": "#FF3B3B", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF3B3B", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 23, "stroke": true, "weight": 3}
+            ).addTo(map_98697880717a64ccf848aa8927b3a5e0);
+        
+    
+        var popup_61f842f80c650b328f6d150ed11ea253 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_348babb6ba751db7fabcca50d1bdc630 = $(`<div id="html_348babb6ba751db7fabcca50d1bdc630" style="width: 100.0%; height: 100.0%;">         <div style="font-family: monospace; min-width: 180px;">             <b style="font-size:14px; color:#00AEEF;">Ruby Hall Clinic</b><br>             <span style="color:#888;">ID: AQ12 | Zone: east</span><br>             <hr style="margin:4px 0; border-color:#444;">             <b>Avg Demand (🌅 Morning Peak (07–10)):</b>             <span style="color:#FF3B3B; font-size:15px;"> 437 pax</span><br>                          🏗 Elevated<br>             <span style="color:#888;">Opened: 2023-08-01</span>         </div>         </div>`)[0];
+                popup_61f842f80c650b328f6d150ed11ea253.setContent(html_348babb6ba751db7fabcca50d1bdc630);
+            
+        
+
+        circle_marker_ada3dd594e338b6f16843248d27cb9d4.bindPopup(popup_61f842f80c650b328f6d150ed11ea253)
+        ;
+
+        
+    
+    
+            circle_marker_ada3dd594e338b6f16843248d27cb9d4.bindTooltip(
+                `<div>
+                     Ruby Hall Clinic — 437 pax
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2977a4f309f061d1baf50acb4e5fca69 = L.circleMarker(
+                [18.5412, 73.8985],
+                {"bubblingMouseEvents": true, "color": "#FF8C00", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF8C00", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 19, "stroke": true, "weight": 3}
+            ).addTo(map_98697880717a64ccf848aa8927b3a5e0);
+        
+    
+        var popup_789be9786a9e2c7104628dbd3d166381 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_33a7f09baab06593c4a16355fca8b883 = $(`<div id="html_33a7f09baab06593c4a16355fca8b883" style="width: 100.0%; height: 100.0%;">         <div style="font-family: monospace; min-width: 180px;">             <b style="font-size:14px; color:#00AEEF;">Bund Garden</b><br>             <span style="color:#888;">ID: AQ13 | Zone: east</span><br>             <hr style="margin:4px 0; border-color:#444;">             <b>Avg Demand (🌅 Morning Peak (07–10)):</b>             <span style="color:#FF8C00; font-size:15px;"> 317 pax</span><br>                          🏗 Elevated<br>             <span style="color:#888;">Opened: 2024-03-06</span>         </div>         </div>`)[0];
+                popup_789be9786a9e2c7104628dbd3d166381.setContent(html_33a7f09baab06593c4a16355fca8b883);
+            
+        
+
+        circle_marker_2977a4f309f061d1baf50acb4e5fca69.bindPopup(popup_789be9786a9e2c7104628dbd3d166381)
+        ;
+
+        
+    
+    
+            circle_marker_2977a4f309f061d1baf50acb4e5fca69.bindTooltip(
+                `<div>
+                     Bund Garden — 317 pax
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a40df70bfae5d9f421006f9eb1d19429 = L.circleMarker(
+                [18.5504, 73.9014],
+                {"bubblingMouseEvents": true, "color": "#FF3B3B", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF3B3B", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 22, "stroke": true, "weight": 3}
+            ).addTo(map_98697880717a64ccf848aa8927b3a5e0);
+        
+    
+        var popup_5a3705ad1663b036592e119978f0d6b9 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_dc3c428fc7b0ec997af551232786fff5 = $(`<div id="html_dc3c428fc7b0ec997af551232786fff5" style="width: 100.0%; height: 100.0%;">         <div style="font-family: monospace; min-width: 180px;">             <b style="font-size:14px; color:#00AEEF;">Yerawada</b><br>             <span style="color:#888;">ID: AQ14 | Zone: east</span><br>             <hr style="margin:4px 0; border-color:#444;">             <b>Avg Demand (🌅 Morning Peak (07–10)):</b>             <span style="color:#FF3B3B; font-size:15px;"> 409 pax</span><br>                          🏗 Elevated<br>             <span style="color:#888;">Opened: 2024-08-21</span>         </div>         </div>`)[0];
+                popup_5a3705ad1663b036592e119978f0d6b9.setContent(html_dc3c428fc7b0ec997af551232786fff5);
+            
+        
+
+        circle_marker_a40df70bfae5d9f421006f9eb1d19429.bindPopup(popup_5a3705ad1663b036592e119978f0d6b9)
+        ;
+
+        
+    
+    
+            circle_marker_a40df70bfae5d9f421006f9eb1d19429.bindTooltip(
+                `<div>
+                     Yerawada — 409 pax
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_07dfbf6fafcc20f671be5f93a9e238e9 = L.circleMarker(
+                [18.5464, 73.9065],
+                {"bubblingMouseEvents": true, "color": "#FF3B3B", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF3B3B", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 24, "stroke": true, "weight": 3}
+            ).addTo(map_98697880717a64ccf848aa8927b3a5e0);
+        
+    
+        var popup_6629bb42ad05c150930861c4818ff070 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_369e781dba6679245c6673598f27a90f = $(`<div id="html_369e781dba6679245c6673598f27a90f" style="width: 100.0%; height: 100.0%;">         <div style="font-family: monospace; min-width: 180px;">             <b style="font-size:14px; color:#00AEEF;">Kalyani Nagar</b><br>             <span style="color:#888;">ID: AQ15 | Zone: east</span><br>             <hr style="margin:4px 0; border-color:#444;">             <b>Avg Demand (🌅 Morning Peak (07–10)):</b>             <span style="color:#FF3B3B; font-size:15px;"> 471 pax</span><br>                          🏗 Elevated<br>             <span style="color:#888;">Opened: 2024-03-06</span>         </div>         </div>`)[0];
+                popup_6629bb42ad05c150930861c4818ff070.setContent(html_369e781dba6679245c6673598f27a90f);
+            
+        
+
+        circle_marker_07dfbf6fafcc20f671be5f93a9e238e9.bindPopup(popup_6629bb42ad05c150930861c4818ff070)
+        ;
+
+        
+    
+    
+            circle_marker_07dfbf6fafcc20f671be5f93a9e238e9.bindTooltip(
+                `<div>
+                     Kalyani Nagar — 471 pax
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a5fdfcad65ea2a9592b20356ce4605c8 = L.circleMarker(
+                [18.5421, 73.9124],
+                {"bubblingMouseEvents": true, "color": "#FF3B3B", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#FF3B3B", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 24, "stroke": true, "weight": 3}
+            ).addTo(map_98697880717a64ccf848aa8927b3a5e0);
+        
+    
+        var popup_f155c2535bc6d07586d6abef75371f84 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_c6ab128237d249d02039be8f77be86d7 = $(`<div id="html_c6ab128237d249d02039be8f77be86d7" style="width: 100.0%; height: 100.0%;">         <div style="font-family: monospace; min-width: 180px;">             <b style="font-size:14px; color:#00AEEF;">Ramwadi</b><br>             <span style="color:#888;">ID: AQ16 | Zone: east</span><br>             <hr style="margin:4px 0; border-color:#444;">             <b>Avg Demand (🌅 Morning Peak (07–10)):</b>             <span style="color:#FF3B3B; font-size:15px;"> 467 pax</span><br>                          🏗 Elevated<br>             <span style="color:#888;">Opened: 2024-03-06</span>         </div>         </div>`)[0];
+                popup_f155c2535bc6d07586d6abef75371f84.setContent(html_c6ab128237d249d02039be8f77be86d7);
+            
+        
+
+        circle_marker_a5fdfcad65ea2a9592b20356ce4605c8.bindPopup(popup_f155c2535bc6d07586d6abef75371f84)
+        ;
+
+        
+    
+    
+            circle_marker_a5fdfcad65ea2a9592b20356ce4605c8.bindTooltip(
+                `<div>
+                     Ramwadi — 467 pax
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var layer_control_7efe7d682292fa48dd3393798882ab00_layers = {
+                base_layers : {
+                    "cartodbdarkmatter" : tile_layer_16f405835aa22475d9e4fe3e8ae52f78,
+                },
+                overlays :  {
+                    "Demand Heatmap" : heat_map_c7e239b66b76d97f4fc4e1ecd8566db0,
+                },
+            };
+            let layer_control_7efe7d682292fa48dd3393798882ab00 = L.control.layers(
+                layer_control_7efe7d682292fa48dd3393798882ab00_layers.base_layers,
+                layer_control_7efe7d682292fa48dd3393798882ab00_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": true,
+  "autoZIndex": true,
+}
+            ).addTo(map_98697880717a64ccf848aa8927b3a5e0);
+
+        
+</script>
+</html>
