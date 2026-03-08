@@ -1,2 +1,5 @@
 # SmartTransit-AI
-SmartTransit AI is an AI-powered public transport demand forecasting and fleet orchestration system that predicts passenger demand using LSTM models and dynamically optimizes vehicle allocation to reduce waiting time, overcrowding, and inefficient fleet usage.
+
+SmartTransit-AI is an AI-powered public transport demand forecasting and fleet optimization system developed for the **Coruscant Transit Command Hackathon (PS4)**. The system predicts passenger demand across metro stations using **time-series forecasting with LSTM neural networks** and compares results with an **ARIMA baseline model**. Using these predictions, the platform dynamically allocates transit vehicles to high-demand stations to reduce passenger wait times, overcrowding, and inefficient fleet usage.
+
+The project also includes **basic route optimization using graph algorithms** and an **interactive Streamlit dashboard** for visualizing passenger demand, station activity, and fleet schedules. By combining machine learning, data analytics, and route optimization, SmartTransit-AI demonstrates how AI-driven systems can improve the efficiency and reliability of modern public transportation networks.
