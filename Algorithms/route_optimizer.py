@@ -1,15 +1,3 @@
-"""
-route_optimizer.py
-Shortest path routing between any two Pune Metro stations using Dijkstra.
-Also provides: all-pairs shortest paths, route summary, transfer detection.
-
-Usage:
-    from Algorithms.route_optimizer import MetroRouter
-    router = MetroRouter()
-    result = router.shortest_path("PU01", "AQ16")
-    print(result)
-"""
-
 import json
 import math
 import heapq
