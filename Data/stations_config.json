@@ -1,0 +1,55 @@
+{
+  "city": "pune",
+  "city_name": "Pune Metro",
+  "transport_mode": "metro",
+  "timezone": "Asia/Kolkata",
+  "total_operational_stations": 30,
+  "lines": {
+    "purple": {
+      "name": "Purple Line — PCMC Bhavan to Swargate",
+      "color": "#7B2D8B",
+      "length_km": 16.59,
+      "total_stations": 14,
+      "type": "elevated + underground"
+    },
+    "aqua": {
+      "name": "Aqua Line — Vanaz to Ramwadi",
+      "color": "#00AEEF",
+      "length_km": 14.66,
+      "total_stations": 16,
+      "type": "elevated"
+    }
+  },
+  "stations": [
+    { "id": "PU01", "name": "PCMC Bhavan",              "lat": 18.6298, "lon": 73.7997, "line": "purple", "interchange": false, "zone": "north",        "underground": false, "opened": "2022-03-06" },
+    { "id": "PU02", "name": "Sant Tukaram Nagar",       "lat": 18.6232, "lon": 73.8054, "line": "purple", "interchange": false, "zone": "north",        "underground": false, "opened": "2022-03-06" },
+    { "id": "PU03", "name": "Bhosari (Nashik Phata)",   "lat": 18.6170, "lon": 73.8101, "line": "purple", "interchange": false, "zone": "north",        "underground": false, "opened": "2022-03-06" },
+    { "id": "PU04", "name": "Kasarwadi",                "lat": 18.6089, "lon": 73.8143, "line": "purple", "interchange": false, "zone": "north",        "underground": false, "opened": "2022-03-06" },
+    { "id": "PU05", "name": "Phugewadi",                "lat": 18.6014, "lon": 73.8179, "line": "purple", "interchange": false, "zone": "north",        "underground": false, "opened": "2022-03-06" },
+    { "id": "PU06", "name": "Dapodi",                   "lat": 18.5956, "lon": 73.8224, "line": "purple", "interchange": false, "zone": "central-north","underground": false, "opened": "2023-08-01" },
+    { "id": "PU07", "name": "Bopodi",                   "lat": 18.5894, "lon": 73.8271, "line": "purple", "interchange": false, "zone": "central-north","underground": false, "opened": "2023-08-01" },
+    { "id": "PU08", "name": "Khadki",                   "lat": 18.5831, "lon": 73.8312, "line": "purple", "interchange": false, "zone": "central-north","underground": false, "opened": "2023-08-01" },
+    { "id": "PU09", "name": "Range Hill",               "lat": 18.5763, "lon": 73.8354, "line": "purple", "interchange": false, "zone": "central",      "underground": false, "opened": "2023-08-01" },
+    { "id": "PU10", "name": "Shivaji Nagar",            "lat": 18.5308, "lon": 73.8474, "line": "purple", "interchange": false, "zone": "central",      "underground": false, "opened": "2023-08-01" },
+    { "id": "PU11", "name": "Civil Court",              "lat": 18.5196, "lon": 73.8554, "line": "purple", "interchange": true,  "zone": "central",      "underground": true,  "opened": "2023-08-01", "interchange_with": "aqua", "note": "Only interchange between Purple and Aqua lines" },
+    { "id": "PU12", "name": "Kasba Peth",               "lat": 18.5143, "lon": 73.8573, "line": "purple", "interchange": false, "zone": "south",        "underground": true,  "opened": "2024-09-29" },
+    { "id": "PU13", "name": "Mandai",                   "lat": 18.5089, "lon": 73.8565, "line": "purple", "interchange": false, "zone": "south",        "underground": true,  "opened": "2024-09-29" },
+    { "id": "PU14", "name": "Swargate",                 "lat": 18.5020, "lon": 73.8567, "line": "purple", "interchange": false, "zone": "south",        "underground": true,  "opened": "2024-09-29" },
+    { "id": "AQ01", "name": "Vanaz",                    "lat": 18.5068, "lon": 73.8074, "line": "aqua",   "interchange": false, "zone": "west",         "underground": false, "opened": "2022-03-06" },
+    { "id": "AQ02", "name": "Anand Nagar",              "lat": 18.5098, "lon": 73.8148, "line": "aqua",   "interchange": false, "zone": "west",         "underground": false, "opened": "2022-03-06" },
+    { "id": "AQ03", "name": "Ideal Colony",             "lat": 18.5128, "lon": 73.8198, "line": "aqua",   "interchange": false, "zone": "west",         "underground": false, "opened": "2022-03-06" },
+    { "id": "AQ04", "name": "Nal Stop",                 "lat": 18.5168, "lon": 73.8248, "line": "aqua",   "interchange": false, "zone": "west",         "underground": false, "opened": "2022-03-06" },
+    { "id": "AQ05", "name": "Garware College",          "lat": 18.5191, "lon": 73.8312, "line": "aqua",   "interchange": false, "zone": "central-west", "underground": false, "opened": "2022-03-06" },
+    { "id": "AQ06", "name": "Deccan Gymkhana",          "lat": 18.5204, "lon": 73.8401, "line": "aqua",   "interchange": false, "zone": "central-west", "underground": false, "opened": "2022-03-06" },
+    { "id": "AQ07", "name": "Chhatrapati Sambhaji Udyan","lat": 18.5210, "lon": 73.8454, "line": "aqua",  "interchange": false, "zone": "central",      "underground": false, "opened": "2022-03-06" },
+    { "id": "AQ08", "name": "PMC",                      "lat": 18.5195, "lon": 73.8518, "line": "aqua",   "interchange": false, "zone": "central",      "underground": false, "opened": "2022-03-06" },
+    { "id": "AQ09", "name": "Civil Court",              "lat": 18.5196, "lon": 73.8554, "line": "aqua",   "interchange": true,  "zone": "central",      "underground": false, "opened": "2023-08-01", "interchange_with": "purple", "note": "Shared interchange with Purple Line" },
+    { "id": "AQ10", "name": "Mangalwar Peth",           "lat": 18.5189, "lon": 73.8601, "line": "aqua",   "interchange": false, "zone": "central-east", "underground": false, "opened": "2023-08-01" },
+    { "id": "AQ11", "name": "Pune Railway Station",     "lat": 18.5285, "lon": 73.8740, "line": "aqua",   "interchange": false, "zone": "central-east", "underground": false, "opened": "2023-08-01", "note": "Major hub — connects to Indian Railways" },
+    { "id": "AQ12", "name": "Ruby Hall Clinic",         "lat": 18.5353, "lon": 73.8918, "line": "aqua",   "interchange": false, "zone": "east",         "underground": false, "opened": "2023-08-01" },
+    { "id": "AQ13", "name": "Bund Garden",              "lat": 18.5412, "lon": 73.8985, "line": "aqua",   "interchange": false, "zone": "east",         "underground": false, "opened": "2024-03-06" },
+    { "id": "AQ14", "name": "Yerawada",                 "lat": 18.5504, "lon": 73.9014, "line": "aqua",   "interchange": false, "zone": "east",         "underground": false, "opened": "2024-08-21" },
+    { "id": "AQ15", "name": "Kalyani Nagar",            "lat": 18.5464, "lon": 73.9065, "line": "aqua",   "interchange": false, "zone": "east",         "underground": false, "opened": "2024-03-06" },
+    { "id": "AQ16", "name": "Ramwadi",                  "lat": 18.5421, "lon": 73.9124, "line": "aqua",   "interchange": false, "zone": "east",         "underground": false, "opened": "2024-03-06" }
+  ]
+}
