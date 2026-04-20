@@ -410,7 +410,7 @@ div[data-testid="metric-container"] { background: transparent !important; }
 # ─────────────────────────────────────────────
 @st.cache_data
 def load_all_data():
-    df = pd.read_csv("Data/pune_metro_enhanced_data.csv")
+    df = pd.read_csv(r"D:\SmartTransit-AI\Data\pune_metro_enhanced_data.csv")
     df["date"] = pd.to_datetime(df["date"])
     df["datetime"] = df["date"] + pd.to_timedelta(df["hour"], unit="h")
     daily = (
