@@ -410,16 +410,20 @@ div[data-testid="metric-container"] { background: transparent !important; }
 # ─────────────────────────────────────────────
 @st.cache_data
 def load_all_data():
-    import os
-
-# Get the directory where app.py is located
-base_path = os.path.dirname(__file__)
-# Go up one level to the root, then into the Data folder
-file_path = os.path.join(base_path, "..", "Data", "pune_metro_enhanced_data.csv")
-
-def load_all_data():
-    df = pd.read_csv("path/to/data.csv")
-    df["date"] = pd.to_datetime(df["date"]) 
+    # 1. Get the absolute path to the directory this script is in (Dashboard/)
+    base_path = os.path.dirname(__file__)
+    
+    # 2. Construct the path to your actual CSV file
+    # If your CSV is in a folder called 'Data' at the root of your repo:
+    file_path = os.path.join(base_path, "..", "Data", "pune_metro_enhanced_data.csv")
+    
+    # 3. Load the file
+    if not os.path.exists(file_path):
+        st.error(f"File not found at {file_path}. Check your folder structure on GitHub!")
+        st.stop()
+        
+    df = pd.read_csv(file_path)
+    # ... rest of your code 
     df["datetime"] = df["date"] + pd.to_timedelta(df["hour"], unit="h")
     daily = (
         df.groupby(["date", "line", "hour"])
