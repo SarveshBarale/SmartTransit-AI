@@ -410,21 +410,22 @@ div[data-testid="metric-container"] { background: transparent !important; }
 # ─────────────────────────────────────────────
 @st.cache_data
 def load_all_data():
-    # 1. Get the absolute path to the directory this script is in (Dashboard/)
-    base_path = os.path.dirname(__file__)
+    # Load data without using the experimental Arrow backend
+    df = pd.read_csv(file_path) 
     
-    # 2. Construct the path to your actual CSV file
-    # If your CSV is in a folder called 'Data' at the root of your repo:
-    file_path = os.path.join(base_path, "..", "Data", "pune_metro_enhanced_data.csv")
+    # 1. Force 'date' to datetime and 'hour' to numeric
+    # errors='coerce' will turn any bad data into NaT/NaN instead of crashing
+    df["date"] = pd.to_datetime(df["date"], errors='coerce')
+    df["hour"] = pd.to_numeric(df["hour"], errors='coerce')
     
-    # 3. Load the file
-    if not os.path.exists(file_path):
-        st.error(f"File not found at {file_path}. Check your folder structure on GitHub!")
-        st.stop()
-        
-    df = pd.read_csv(file_path)
-    # ... rest of your code 
-    df["datetime"] = df["date"] + pd.to_timedelta(df["hour"], unit="h")
+    # 2. Drop rows where date or hour couldn't be parsed
+    df = df.dropna(subset=["date", "hour"])
+    
+    # 3. Create the datetime column safely
+    # We use .values to ensure we are doing a standard addition
+    df["datetime"] = df["date"] + pd.to_timedelta(df["hour"].astype(int), unit="h")
+    
+    # ... rest of your aggregation logic
     daily = (
         df.groupby(["date", "line", "hour"])
         .agg(total=("passengers", "sum"),
